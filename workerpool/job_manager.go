@@ -20,3 +20,9 @@ func NewJobManager() *JobManager {
 		jobStatus: make(map[*Job]JobStatus),
 	}
 }
+
+func (jm *JobManager) SetStatus(job *Job, status JobStatus) {
+	jm.mu.Lock()
+	defer jm.mu.Unlock()
+	jm.jobStatus[job] = status
+}
