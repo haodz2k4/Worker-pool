@@ -26,3 +26,9 @@ func (jm *JobManager) SetStatus(job *Job, status JobStatus) {
 	defer jm.mu.Unlock()
 	jm.jobStatus[job] = status
 }
+
+func (jm *JobManager) GetStatus(job *Job) JobStatus {
+	jm.mu.Lock()
+	defer jm.mu.Unlock()
+	return jm.jobStatus[job]
+}
